@@ -1,8 +1,28 @@
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import Image from "next/image";
 
-const ServiceBox = ({ title, content, icon, gradient, progress }: any) => {
+interface ServiceBoxProps {
+  title: string;
+  content: string;
+  icon: string;
+  gradient: string;
+  progress: MotionValue<number>;
+}
+
+const ServiceBox = ({
+  title,
+  content,
+  icon,
+  gradient,
+  progress,
+}: ServiceBoxProps) => {
   const height = useTransform(progress, [0, 1], ["0%", "100%"]);
 
   return (

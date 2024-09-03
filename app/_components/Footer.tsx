@@ -1,7 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Facebook, Twitter, Instagram, Linkedin, Mail } from "lucide-react";
 
-const FooterLink = ({ href, children }) => (
+interface FooterLinkProps {
+  href: string;
+  children: ReactNode;
+}
+
+interface SocialIconProps {
+  Icon: any;
+  href: string;
+}
+
+const FooterLink = ({ href, children }: FooterLinkProps) => (
   <a
     href={href}
     className="text-black hover:font-bold transition-colors duration-300"
@@ -10,7 +20,7 @@ const FooterLink = ({ href, children }) => (
   </a>
 );
 
-const SocialIcon = ({ Icon, href }) => (
+const SocialIcon = ({ Icon, href }: SocialIconProps) => (
   <a
     href={href}
     className="text-black hover:font-bold transition-colors duration-300"

@@ -3,7 +3,24 @@ import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { Star } from "lucide-react";
 import Footer from "./Footer";
 
-const ReviewCard = ({ name, role, review, rating }: any) => (
+interface ReviewCardProps {
+  name: string;
+  role: string;
+  review: string;
+  rating: number;
+}
+
+interface BrandLogoProps {
+  src: string;
+  alt: string;
+}
+interface HorizontalStripProps {
+  children: React.ReactNode;
+  title: string;
+  bgColor?: string;
+}
+
+const ReviewCard = ({ name, role, review, rating }: ReviewCardProps) => (
   <motion.div
     className="bg-white rounded-lg shadow-lg p-6 min-w-[300px] max-w-[300px] mr-6 flex flex-col justify-between"
     whileHover={{ scale: 1.05, boxShadow: "0 10px 20px rgba(0,0,0,0.1)" }}
@@ -29,7 +46,7 @@ const ReviewCard = ({ name, role, review, rating }: any) => (
   </motion.div>
 );
 
-const BrandLogo = ({ src, alt }) => (
+const BrandLogo = ({ src, alt }: BrandLogoProps) => (
   <motion.img
     src={src}
     alt={alt}
@@ -39,28 +56,34 @@ const BrandLogo = ({ src, alt }) => (
   />
 );
 
-const HorizontalStrip = ({ children, title, bgColor }: any) => {
+const HorizontalStrip = ({
+  children,
+  title,
+  bgColor,
+}: HorizontalStripProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
   const x = useMotionValue(0);
 
   useEffect(() => {
-    const scrollWidth = containerRef.current.scrollWidth;
-    const containerWidth = containerRef.current.offsetWidth;
-    const distance = scrollWidth - containerWidth;
+    if (containerRef.current) {
+      const scrollWidth = containerRef.current.scrollWidth;
+      const containerWidth = containerRef.current.offsetWidth;
+      const distance = scrollWidth - containerWidth;
 
-    controls.start({
-      x: [-distance, 0],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: 50,
-          ease: "linear",
+      controls.start({
+        x: [-distance, 0],
+        transition: {
+          x: {
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 50,
+            ease: "linear",
+          },
         },
-      },
-    });
+      });
+    }
   }, [controls]);
 
   return (

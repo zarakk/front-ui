@@ -1,6 +1,12 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import Dashboard from "./Dashboard";
 import AnimatedServiceBoxes from "./AnimatedServiceBoxes";
 import NextSection from "./NextSection";
@@ -34,9 +40,9 @@ const BannerLeftSection = () => {
   );
 };
 
-const ScrollControlledDashboard: React.FC<{ videoProgress: number }> = ({
-  videoProgress,
-}) => {
+const ScrollControlledDashboard: React.FC<{
+  videoProgress: MotionValue<number>;
+}> = ({ videoProgress }) => {
   const containerRef2 = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress: scrollYProgress2 } = useScroll({
@@ -133,14 +139,14 @@ const ScrollControlledVideo: React.FC = () => {
     offset: ["start start", "end center"],
   });
 
-  // const smoothProgress1 = useSpring(scrollYProgress1, {
-  //   stiffness: 20,
-  //   damping: 20,
-  //   restDelta: 0.001,
-  // });
+  const smoothProgress1 = useSpring(scrollYProgress1, {
+    stiffness: 100,
+    damping: 100,
+    restDelta: 0.001,
+  });
 
-  const videoProgress = useTransform(scrollYProgress1, [0, 1], [0, 1]);
-  const videoScale = useTransform(scrollYProgress1, [0, 0.9, 1], [1, 1, 5]);
+  const videoProgress = useTransform(smoothProgress1, [0, 1], [0, 1]);
+  const videoScale = useTransform(smoothProgress1, [0, 0.9, 1], [1, 1, 5]);
   const blackOpacity = useTransform(scrollYProgress1, [0.9, 1], [0, 1]);
 
   useEffect(() => {

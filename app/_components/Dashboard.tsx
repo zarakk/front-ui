@@ -13,6 +13,7 @@ import {
   Users,
   Headphones,
 } from "lucide-react";
+import Image from "next/image";
 
 const Dashboard = () => {
   return (
@@ -38,10 +39,12 @@ const Dashboard = () => {
         <div className="flex items-center space-x-4">
           <Settings size={20} />
           <Bell size={20} />
-          <img
+          <Image
             src="/profile-img.jpg"
             alt="User"
-            className="w-8 h-8 rounded-full object-cover"
+            className="rounded-full object-cover"
+            height={12}
+            width={12}
           />
         </div>
       </div>
@@ -152,10 +155,12 @@ const Dashboard = () => {
           </div>
           <div className="flex-1 p-4 overflow-y-auto">
             <div className="flex items-center space-x-2 mb-4">
-              <img
+              <Image
                 src="/profile-img.jpg"
                 alt="Ernest"
-                className="w-10 h-10 rounded-full object-cover"
+                className="rounded-full object-cover"
+                height={10}
+                width={10}
               />
               <div>
                 <p className="font-semibold">Ernest Pierce</p>
@@ -177,10 +182,12 @@ const Dashboard = () => {
             {/* Conversation thread */}
             <div className="mt-4 space-y-4">
               <div className="flex items-center space-x-2">
-                <img
+                <Image
                   src="/profile-img.jpg"
                   alt="Marisa"
-                  className="w-8 h-8 rounded-full object-cover"
+                  className="rounded-full object-cover"
+                  width={10}
+                  height={10}
                 />
                 <div className="bg-gray-100 p-2 rounded-lg">
                   <p className="text-sm">
@@ -191,10 +198,12 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <img
+                <Image
                   src="/female-profile.jfif"
                   alt="Madeline"
-                  className="w-8 h-8 rounded-full object-cover"
+                  className=" rounded-full object-cover"
+                  height={10}
+                  width={10}
                 />
                 <div className="bg-gray-100 p-2 rounded-lg">
                   <p className="text-sm">
@@ -228,10 +237,12 @@ const Dashboard = () => {
           </div>
           <div className="space-y-4">
             <div className="flex items-start space-x-2">
-              <img
+              <Image
                 src="/female-profile.jfif"
                 alt="Mary"
-                className="w-8 h-8 rounded-full object-cover"
+                className=" rounded-full object-cover"
+                height={10}
+                width={10}
               />
               <div>
                 <p className="font-semibold">Mary Alyse</p>
@@ -242,10 +253,12 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex items-start space-x-2">
-              <img
+              <Image
                 src="/profile-img.jpg"
                 alt="Ernest"
-                className="w-8 h-8 rounded-full object-cover"
+                className=" rounded-full object-cover"
+                height={10}
+                width={10}
               />
               <div>
                 <p className="font-semibold">Ernest Pierce</p>
