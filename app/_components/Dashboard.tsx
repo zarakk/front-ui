@@ -18,7 +18,6 @@ import Image from "next/image";
 const Dashboard = () => {
   return (
     <div className=" flex flex-col h-screen bg-[#f0f4f8] text-gray-800 rounded-xl">
-      {/* Top Navigation */}
       <div className="bg-[#1a2233] text-white p-4 flex items-center justify-between rounded-xl">
         <div className="flex items-center space-x-4">
           <MessageCircle size={20} />
@@ -49,9 +48,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Main Content */}
       <div className="flex flex-1 overflow-hidden rounded-xl">
-        {/* Left Sidebar */}
         <div className="w-64 bg-white p-4 overflow-y-auto">
           <button className="bg-blue-500 text-white rounded-full px-4 py-2 w-full mb-4">
             Compose
@@ -99,9 +96,7 @@ const Dashboard = () => {
           </nav>
         </div>
 
-        {/* Email List */}
         <div className="w-1/3 bg-white border-x overflow-y-auto">
-          {/* Email items */}
           <div className="p-4 border-b bg-blue-100 hover:bg-blue-200 cursor-pointer">
             <div className="flex justify-between items-center mb-1">
               <span className="font-semibold">Ernest Pierce</span>
@@ -132,10 +127,8 @@ const Dashboard = () => {
               Hello there, My name is Mark and I am...
             </p>
           </div>
-          {/* Add more email items */}
         </div>
 
-        {/* Email Content */}
         <div className="flex-1 flex flex-col bg-white">
           <div className="p-4 border-b flex justify-between items-center">
             <h2 className="font-semibold text-lg">Ernest Pierce</h2>
@@ -179,7 +172,6 @@ const Dashboard = () => {
               <br />
               Thanks!
             </p>
-            {/* Conversation thread */}
             <div className="mt-4 space-y-4">
               <div className="flex items-center space-x-2">
                 <Image
@@ -229,7 +221,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Right Sidebar */}
         <div className="w-64 bg-white p-4 overflow-y-auto">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-semibold">People</h3>

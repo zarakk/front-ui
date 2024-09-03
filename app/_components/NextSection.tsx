@@ -85,32 +85,6 @@ const NextSection = () => {
             </div>
           </motion.div>
         </motion.div>
-
-        {/* <motion.div
-          className="absolute inset-0 flex flex-col justify-center items-center p-8 h-[100vh]"
-          style={{
-            opacity: reviewsOpacity,
-            scale: reviewsScale,
-          }}
-        >
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">
-            Customer Reviews
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
-            <div className="bg-gray-100 p-4 rounded-lg shadow">
-              <p className="text-gray-700 mb-2">
-                "Absolutely amazing service! Highly recommended."
-              </p>
-              <p className="text-gray-600 font-semibold">- John Doe</p>
-            </div>
-            <div className="bg-gray-100 p-4 rounded-lg shadow">
-              <p className="text-gray-700 mb-2">
-                "Innovative solutions that transformed our business."
-              </p>
-              <p className="text-gray-600 font-semibold">- Jane Smith</p>
-            </div>
-          </div>
-        </motion.div> */}
         <ReviewSection />
       </motion.div>
     </div>
