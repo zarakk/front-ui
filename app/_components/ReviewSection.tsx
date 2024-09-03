@@ -36,7 +36,7 @@ const ReviewCard = ({ name, role, review, rating }: ReviewCardProps) => (
           />
         ))}
       </div>
-      <p className="text-gray-600 mb-4 italic">"{review}"</p>
+      <p className="text-gray-600 mb-4 italic">{review}</p>
     </div>
     <div>
       <h3 className="font-bold text-lg">{name}</h3>
