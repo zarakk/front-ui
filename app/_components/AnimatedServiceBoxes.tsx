@@ -82,21 +82,6 @@ const services = [
   },
 ];
 
-const useServiceBoxProgresses = (
-  smoothProgress: MotionValue<number>,
-  servicesCount: number
-) => {
-  const progresses = Array.from({ length: servicesCount }, (_, index) => {
-    return useTransform(
-      smoothProgress,
-      [index / servicesCount, (index + 1) / servicesCount],
-      [0, 1]
-    );
-  });
-
-  return progresses;
-};
-
 const AnimatedServiceBoxes: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -113,10 +98,15 @@ const AnimatedServiceBoxes: React.FC = () => {
   const overlayProgress = useTransform(smoothProgress, [0.99, 1], [0, 1]);
   const overlayHeight = useTransform(overlayProgress, [0, 1], ["0%", "100%"]);
 
-  const boxProgresses = useServiceBoxProgresses(
-    smoothProgress,
-    services.length
-  );
+  const boxProgresses = useMemo(() => {
+    return services.map((_, index) => {
+      return useTransform(
+        smoothProgress,
+        [index / services.length, (index + 1) / services.length],
+        [0, 1]
+      );
+    });
+  }, [smoothProgress]);
 
   return (
     <div
