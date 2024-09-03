@@ -109,7 +109,7 @@ const HorizontalStrip = ({
           whileTap={{ cursor: "grabbing" }}
         >
           {children}
-          {children} {/* Duplicate children for seamless loop */}
+          {children}
         </motion.div>
       </div>
     </div>

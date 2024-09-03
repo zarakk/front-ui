@@ -109,7 +109,7 @@ const Dashboard = () => {
             </div>
             <p className="text-sm font-semibold">Q on Investment portfolio</p>
             <p className="text-xs text-gray-600 truncate">
-              Hey there, I'm a platinum member with ...
+              Hey there, I&apos;m a platinum member with ...
             </p>
           </div>
           <div className="p-4 border-b hover:bg-gray-100 cursor-pointer">
@@ -173,8 +173,8 @@ const Dashboard = () => {
               Hey there,
               <br />
               <br />
-              I'm a platinum member with Rocket Invest and need to talk with
-              someone familiar with my account.
+              I&apos;m a platinum member with Rocket Invest and need to talk
+              with someone familiar with my account.
               <br />
               <br />
               Thanks!
