@@ -96,10 +96,9 @@ const AnimatedServiceBoxes: React.FC = () => {
   });
 
   const overlayProgress = useTransform(smoothProgress, [0.99, 1], [0, 1]);
-
   const overlayHeight = useTransform(overlayProgress, [0, 1], ["0%", "100%"]);
 
-  const boxProgress = useMemo(() => {
+  const boxProgresses = useMemo(() => {
     return services.map((_, index) =>
       useTransform(
         smoothProgress,
@@ -141,7 +140,7 @@ const AnimatedServiceBoxes: React.FC = () => {
               content={service.content}
               icon={service.icon}
               gradient={service.gradient}
-              progress={boxProgress[index]}
+              progress={boxProgresses[index]}
             />
           </div>
         ))}

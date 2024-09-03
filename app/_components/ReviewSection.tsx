@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 import { Star } from "lucide-react";
-import Footer from "./Footer";
 
 interface ReviewCardProps {
   name: string;
@@ -122,7 +121,7 @@ const ReviewSection = () => {
       name: "Alex Johnson",
       role: "CEO, TechStart",
       review:
-        "The innovation and creativity displayed by this team is unparalleled. They've truly transformed our business.",
+        "The innovation and creativity displayed by this team is unparalleled. They&apos;ve truly transformed our business.",
       rating: 5,
     },
     {
@@ -136,14 +135,14 @@ const ReviewSection = () => {
       name: "Michael Chen",
       role: "Founder, NextGen Solutions",
       review:
-        "The level of expertise and dedication is impressive. They don't just deliver results, they exceed expectations.",
+        "The level of expertise and dedication is impressive. They don&apos;t just deliver results, they exceed expectations.",
       rating: 5,
     },
     {
       name: "Emily Watson",
       role: "CTO, InnovateTech",
       review:
-        "Their technical prowess and problem-solving skills are outstanding. They've been instrumental in our product development.",
+        "Their technical prowess and problem-solving skills are outstanding. They&apos;ve been instrumental in our product development.",
       rating: 5,
     },
   ];
