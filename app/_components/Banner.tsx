@@ -145,29 +145,29 @@ const ScrollControlledVideo: React.FC = () => {
     restDelta: 0.001,
   });
 
-  const videoProgress = useTransform(smoothProgress1, [0, 1], [0, 1]);
-  const videoScale = useTransform(smoothProgress1, [0, 0.9, 1], [1, 1, 5]);
+  // const videoProgress = useTransform(smoothProgress1, [0, 1], [0, 1]);
+  // const videoScale = useTransform(smoothProgress1, [0, 0.9, 1], [1, 1, 5]);
   const blackOpacity = useTransform(scrollYProgress1, [0.9, 1], [0, 1]);
 
-  useEffect(() => {
-    const updateVideoTime = () => {
-      if (videoRef.current) {
-        videoRef.current.currentTime =
-          videoProgress.get() * videoRef.current.duration;
-      }
-    };
+  // useEffect(() => {
+  //   const updateVideoTime = () => {
+  //     if (videoRef.current) {
+  //       videoRef.current.currentTime =
+  //         videoProgress.get() * videoRef.current.duration;
+  //     }
+  //   };
 
-    const unsubscribe = videoProgress.on("change", updateVideoTime);
+  //   const unsubscribe = videoProgress.on("change", updateVideoTime);
 
-    return () => {
-      unsubscribe();
-    };
-  }, [videoProgress]);
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, [videoProgress]);
 
   return (
     <>
-      <div ref={containerRef} style={{ height: "400vh" }}>
-        <motion.video
+      <div ref={containerRef} style={{ height: "100vh" }}>
+        {/* <motion.video
           ref={videoRef}
           src="/ppl.mp4"
           style={{
@@ -180,7 +180,7 @@ const ScrollControlledVideo: React.FC = () => {
             scale: videoScale,
             transformOrigin: "center center",
           }}
-        />
+        /> */}
         <motion.div
           style={{
             position: "fixed",
@@ -190,7 +190,6 @@ const ScrollControlledVideo: React.FC = () => {
             height: "100%",
             background:
               "linear-gradient(209deg, rgb(0, 27, 56) 23.25%, rgb(0, 110, 178) 161.08%)",
-            opacity: blackOpacity,
           }}
         />
       </div>

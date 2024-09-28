@@ -1,4 +1,4 @@
-import React, { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import {
   motion,
   useScroll,
@@ -82,6 +82,16 @@ const services = [
   },
 ];
 
+const useServiceBoxProgresses = (smoothProgress: MotionValue<number>) => {
+  // Individual useTransform hooks for each service
+  const transform0 = useTransform(smoothProgress, [0, 1 / 4], [0, 1]);
+  const transform1 = useTransform(smoothProgress, [1 / 4, 2 / 4], [0, 1]);
+  const transform2 = useTransform(smoothProgress, [2 / 4, 3 / 4], [0, 1]);
+  const transform3 = useTransform(smoothProgress, [3 / 4, 1], [0, 1]);
+
+  return [transform0, transform1, transform2, transform3]; // Return the transforms
+};
+
 const AnimatedServiceBoxes: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -95,18 +105,7 @@ const AnimatedServiceBoxes: React.FC = () => {
     restDelta: 0.001,
   });
 
-  const overlayProgress = useTransform(smoothProgress, [0.99, 1], [0, 1]);
-  const overlayHeight = useTransform(overlayProgress, [0, 1], ["0%", "100%"]);
-
-  const boxProgresses = useMemo(() => {
-    return services.map((_, index) => {
-      return useTransform(
-        smoothProgress,
-        [index / services.length, (index + 1) / services.length],
-        [0, 1]
-      );
-    });
-  }, [smoothProgress]);
+  const boxProgresses = useServiceBoxProgresses(smoothProgress);
 
   return (
     <div
@@ -140,20 +139,20 @@ const AnimatedServiceBoxes: React.FC = () => {
               content={service.content}
               icon={service.icon}
               gradient={service.gradient}
-              progress={boxProgresses[index]}
+              progress={boxProgresses[index]} // Directly using individual transforms
             />
           </div>
         ))}
-        <motion.div
+        {/* <motion.div
           style={{
             position: "absolute",
             bottom: 0,
             left: 0,
             right: 0,
-            height: overlayHeight,
+            height: "100%", // Adjust as needed
             background: "white",
           }}
-        />
+        /> */}
       </div>
     </div>
   );
