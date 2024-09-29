@@ -147,7 +147,7 @@ const ScrollControlledVideo: React.FC = () => {
 
   // const videoProgress = useTransform(smoothProgress1, [0, 1], [0, 1]);
   // const videoScale = useTransform(smoothProgress1, [0, 0.9, 1], [1, 1, 5]);
-  const blackOpacity = useTransform(scrollYProgress1, [0.9, 1], [0, 1]);
+  const opacity = useTransform(scrollYProgress1, [0.7, 1], [1, 0]);
 
   // useEffect(() => {
   //   const updateVideoTime = () => {
@@ -181,6 +181,14 @@ const ScrollControlledVideo: React.FC = () => {
             transformOrigin: "center center",
           }}
         /> */}
+        <motion.div
+          className="h-screen w-screen fixed top-0 flex items-center justify-center"
+          style={{ zIndex: 999, opacity }}
+        >
+          <h3 className="text-white border border-white rounded-full p-10 hover:bg-indigo-300 hover:text-black cursor-pointer">
+            Scroll Down
+          </h3>
+        </motion.div>
         <motion.div
           style={{
             position: "fixed",
