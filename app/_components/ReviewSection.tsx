@@ -95,7 +95,7 @@ const HorizontalStrip = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <h2 className="text-4xl font-bold text-center mb-12 text-[#0b1a37]">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-[#0b1a37]">
         {title}
       </h2>
       <div className="overflow-hidden" ref={containerRef}>

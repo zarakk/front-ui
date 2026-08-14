@@ -18,14 +18,14 @@ import Image from "next/image";
 const Dashboard = () => {
   return (
     <div className=" flex flex-col h-screen bg-[#f0f4f8] text-gray-800 rounded-xl">
-      <div className="bg-[#1a2233] text-white p-4 flex items-center justify-between rounded-xl">
-        <div className="flex items-center space-x-4">
+      <div className="bg-[#1a2233] text-white p-3 sm:p-4 flex items-center justify-between rounded-xl">
+        <div className="hidden sm:flex items-center space-x-4">
           <MessageCircle size={20} />
           <Share2 size={20} />
           <Clock size={20} />
           <AlertTriangle size={20} />
         </div>
-        <div className="flex-1 mx-4">
+        <div className="flex-1 sm:mx-4 mr-3">
           <div className="bg-[#2c3a57] flex items-center rounded-md px-2">
             <Search size={16} className="text-gray-400 mr-2" />
             <input
@@ -49,7 +49,7 @@ const Dashboard = () => {
       </div>
 
       <div className="flex flex-1 overflow-hidden rounded-xl">
-        <div className="w-64 bg-white p-4 overflow-y-auto">
+        <div className="hidden lg:block w-64 bg-white p-4 overflow-y-auto">
           <button className="bg-blue-500 text-white rounded-full px-4 py-2 w-full mb-4">
             Compose
           </button>
@@ -96,7 +96,7 @@ const Dashboard = () => {
           </nav>
         </div>
 
-        <div className="w-1/3 bg-white border-x overflow-y-auto">
+        <div className="hidden md:block md:w-1/3 bg-white border-x overflow-y-auto">
           <div className="p-4 border-b bg-blue-100 hover:bg-blue-200 cursor-pointer">
             <div className="flex justify-between items-center mb-1">
               <span className="font-semibold">Ernest Pierce</span>
@@ -130,13 +130,13 @@ const Dashboard = () => {
         </div>
 
         <div className="flex-1 flex flex-col bg-white">
-          <div className="p-4 border-b flex justify-between items-center">
-            <h2 className="font-semibold text-lg">Ernest Pierce</h2>
+          <div className="p-4 border-b flex justify-between items-center gap-2">
+            <h2 className="font-semibold text-lg truncate">Ernest Pierce</h2>
             <div className="flex items-center space-x-2">
-              <button className="bg-gray-200 text-xs px-3 py-1 rounded-full">
+              <button className="hidden sm:block bg-gray-200 text-xs px-3 py-1 rounded-full">
                 INBOX
               </button>
-              <button className="bg-gray-200 text-xs px-3 py-1 rounded-full">
+              <button className="hidden sm:block bg-gray-200 text-xs px-3 py-1 rounded-full">
                 SUPPORT
               </button>
               <button className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm">
@@ -221,7 +221,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="w-64 bg-white p-4 overflow-y-auto">
+        <div className="hidden xl:block w-64 bg-white p-4 overflow-y-auto">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-semibold">People</h3>
             <ChevronDown size={16} />

@@ -27,6 +27,7 @@ const ServiceBox: React.FC<ServiceBoxProps> = ({
 
   return (
     <motion.div
+      className="p-3 sm:p-6 md:p-8"
       style={{
         height,
         background: gradient,
@@ -37,16 +38,23 @@ const ServiceBox: React.FC<ServiceBoxProps> = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        padding: "2rem",
         color: "#0b1a37",
         overflow: "hidden",
       }}
     >
       <div className="icon">
-        <Image src={icon} alt="icon" height={145} width={145} />
+        <Image
+          src={icon}
+          alt="icon"
+          height={145}
+          width={145}
+          className="w-12 h-12 sm:w-24 sm:h-24 md:w-36 md:h-36"
+        />
       </div>
-      <h2 className="text-2xl font-bold mb-4">{title}</h2>
-      <p>{content}</p>
+      <h2 className="text-sm sm:text-xl md:text-2xl font-bold mb-2 md:mb-4">
+        {title}
+      </h2>
+      <p className="text-xs sm:text-sm md:text-base">{content}</p>
     </motion.div>
   );
 };

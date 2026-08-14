@@ -16,26 +16,28 @@ import Navbar from "./Navbar";
 
 const BannerLeftSection = () => {
   return (
-    <div className="w-1/3">
-      <h1 className="text-5xl font-bold mb-4">
+    <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
         How teams deliver exceptional service at scale
       </h1>
-      <p className="text-lg mb-10">
+      <p className="text-base md:text-lg mb-8 md:mb-10">
         Front is a new way to route, respond to, and measure all your customer
         conversations.
       </p>
-      <button
-        className="bg-white text-black px-6 py-4 rounded-full hover:bg-[#CC0049] hover:text-white transition-all duration-300 ease-in-out
+      <div className="flex flex-col sm:flex-row gap-4">
+        <button
+          className="bg-white text-black px-6 py-4 rounded-full hover:bg-[#CC0049] hover:text-white transition-all duration-300 ease-in-out
                          shadow-[0_0_10px_rgba(255,255,255,0.7)] hover:shadow-[0_0_20px_rgba(255,255,255,0.9)]"
-      >
-        Try for Free
-      </button>
-      <button
-        className="bg-transparent text-white px-6 py-4 rounded-full border border-white ml-4 hover:bg-[#CC0049] transition-all duration-300 ease-in-out
+        >
+          Try for Free
+        </button>
+        <button
+          className="bg-transparent text-white px-6 py-4 rounded-full border border-white hover:bg-[#CC0049] transition-all duration-300 ease-in-out
                          shadow-[0_0_10px_rgba(255,255,255,0.7)] hover:shadow-[0_0_20px_rgba(255,255,255,0.9)]"
-      >
-        Request a Demo
-      </button>
+        >
+          Request a Demo
+        </button>
+      </div>
     </div>
   );
 };

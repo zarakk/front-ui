@@ -56,20 +56,20 @@ const NextSection = () => {
           style={{ opacity: splitOpacity, zIndex: 99 }}
         >
           <motion.div
-            className="w-full h-1/2 bg-[#0b1a37] flex justify-center items-center overflow-hidden"
+            className="w-full h-1/2 bg-[#0b1a37] flex justify-center items-center overflow-hidden px-4"
             style={{ y: splitY }}
           >
             <div className="text-center text-white ">
-              <h1 className="text-7xl font-bold mb-6  ">
+              <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-6  ">
                 Streamline your customer communication with Front
               </h1>
             </div>
           </motion.div>
           <motion.div
-            className="w-full h-1/2 bg-[#0b1a37] flex justify-center items-center overflow-hidden"
+            className="w-full h-1/2 bg-[#0b1a37] flex justify-center items-center overflow-hidden px-4"
             style={{ y: splitY2 }}
           >
-            <div className="text-center">
+            <div className="text-center flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 className="bg-white text-black px-6 py-4 rounded-full hover:bg-[#CC0049] hover:text-white transition-all duration-300 ease-in-out
                          shadow-[0_0_10px_rgba(255,255,255,0.7)] hover:shadow-[0_0_20px_rgba(255,255,255,0.9)]"
@@ -77,7 +77,7 @@ const NextSection = () => {
                 Try for Free
               </button>
               <button
-                className="bg-transparent text-white px-6 py-4 rounded-full border border-white ml-4 hover:bg-[#CC0049] transition-all duration-300 ease-in-out
+                className="bg-transparent text-white px-6 py-4 rounded-full border border-white hover:bg-[#CC0049] transition-all duration-300 ease-in-out
                          shadow-[0_0_10px_rgba(255,255,255,0.7)] hover:shadow-[0_0_20px_rgba(255,255,255,0.9)]"
               >
                 Request a Demo

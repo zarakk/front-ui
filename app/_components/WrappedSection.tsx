@@ -123,18 +123,19 @@ const Section: React.FC<{
   videoSrc: string;
 }> = ({ title, subtitle, description, videoSrc }) => (
   <div
-    className="flex items-start justify-center"
+    className="flex flex-col md:flex-row items-start justify-center p-4 sm:p-6 md:p-8 gap-6 md:gap-0"
     style={{
       width: "100%",
-      padding: "2rem",
     }}
   >
-    <div className="flex flex-col w-1/2 pr-8">
-      <h1 className="text-4xl font-bold mb-6">{title}</h1>
-      <p className="text-xl mb-4">{subtitle}</p>
-      <p>{description}</p>
+    <div className="flex flex-col w-full md:w-1/2 md:pr-8">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6">
+        {title}
+      </h1>
+      <p className="text-lg md:text-xl mb-4">{subtitle}</p>
+      <p className="text-sm md:text-base">{description}</p>
     </div>
-    <div className="w-1/2">
+    <div className="w-full md:w-1/2">
       <video muted autoPlay src={videoSrc} className="w-full h-auto"></video>
     </div>
   </div>
