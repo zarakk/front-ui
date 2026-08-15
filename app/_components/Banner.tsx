@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -14,17 +14,29 @@ import WrappedSection from "./WrappedSection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isMobile;
+};
+
 const BannerLeftSection = () => {
   return (
-    <div className="w-full sm:w-2/3 md:w-1/2 lg:w-1/3">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+    <div className="w-full lg:w-1/3 text-center lg:text-left">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">
         How teams deliver exceptional service at scale
       </h1>
-      <p className="text-base md:text-lg mb-8 md:mb-10">
+      <p className="text-lg mb-8 md:mb-10">
         Front is a new way to route, respond to, and measure all your customer
         conversations.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
         <button
           className="bg-white text-black px-6 py-4 rounded-full hover:bg-[#CC0049] hover:text-white transition-all duration-300 ease-in-out
                          shadow-[0_0_10px_rgba(255,255,255,0.7)] hover:shadow-[0_0_20px_rgba(255,255,255,0.9)]"
@@ -46,27 +58,47 @@ const ScrollControlledDashboard: React.FC<{
   videoProgress: MotionValue<number>;
 }> = ({ videoProgress }) => {
   const containerRef2 = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
 
   const { scrollYProgress: scrollYProgress2 } = useScroll({
     target: containerRef2,
     offset: ["start start", "end end"],
   });
 
-  const blackScale = useTransform(scrollYProgress2, [0, 1], [1, 0.5]);
-  const visibilityScale = useTransform(scrollYProgress2, [0.5, 0.58], [0, 1]);
+  const blueGradient =
+    "linear-gradient(209deg, rgb(0, 27, 56) 23.25%, rgb(0, 110, 178) 161.08%)";
 
-  const x = useTransform(scrollYProgress2, [0.5, 1], ["0%", "20%"]);
+  // Desktop runs the full choreography (dashboard shrinks and slides beside the
+  // title). Mobile keeps it simple: a static blue hero with centered text and
+  // no dashboard, so it stays readable.
+  const blackScale = useTransform(
+    scrollYProgress2,
+    [0, 1],
+    isMobile ? [1, 1] : [1, 0.5]
+  );
+  const visibilityScale = useTransform(
+    scrollYProgress2,
+    isMobile ? [0.05, 0.15] : [0.5, 0.58],
+    [0, 1]
+  );
 
-  // Move title and button from left to center (0.5 to 1 progress)
-  const titleX = useTransform(scrollYProgress2, [0.5, 1], ["20%", "0%"]);
+  const x = useTransform(
+    scrollYProgress2,
+    [0.5, 1],
+    isMobile ? ["0%", "0%"] : ["0%", "20%"]
+  );
+
+  // Move title from left to center on desktop; keep it put on mobile.
+  const titleX = useTransform(
+    scrollYProgress2,
+    [0.5, 1],
+    isMobile ? ["0%", "0%"] : ["20%", "0%"]
+  );
 
   const backgroundColor = useTransform(
     scrollYProgress2,
     [0.5, 0.6],
-    [
-      "linear-gradient(209deg, rgb(0, 27, 56) 23.25%, rgb(0, 110, 178) 161.08%)",
-      "#ffffff",
-    ]
+    isMobile ? [blueGradient, blueGradient] : [blueGradient, "#ffffff"]
   );
 
   // Visibility control based on video progress
@@ -91,18 +123,20 @@ const ScrollControlledDashboard: React.FC<{
           opacity,
           transformOrigin: "center center",
           x,
-          border: "4px solid white",
+          border: isMobile ? "none" : "4px solid white",
         }}
       >
-        <motion.div style={{ opacity: visibilityScale }}>
-          <Dashboard />
-        </motion.div>
+        {!isMobile && (
+          <motion.div style={{ opacity: visibilityScale }}>
+            <Dashboard />
+          </motion.div>
+        )}
       </motion.div>
       <motion.div
         style={{
           position: "fixed",
           top: "0",
-          zIndex: 5,
+          zIndex: isMobile ? 60 : 5,
           left: 0,
           width: "100%",
           height: "100%",
@@ -116,14 +150,17 @@ const ScrollControlledDashboard: React.FC<{
       <motion.div
         style={{
           position: "fixed",
-          top: "25%",
-          zIndex: 5,
+          top: isMobile ? 0 : "25%",
+          zIndex: isMobile ? 60 : 5,
           left: 0,
           width: "100%",
           height: "100%",
           opacity: visibilityScale,
           x: titleX,
           padding: "20px",
+          display: isMobile ? "flex" : "block",
+          alignItems: isMobile ? "center" : undefined,
+          justifyContent: isMobile ? "center" : undefined,
         }}
       >
         <BannerLeftSection />
@@ -187,7 +224,15 @@ const ScrollControlledVideo: React.FC = () => {
           className="h-screen w-screen fixed top-0 flex items-center justify-center"
           style={{ zIndex: 999, opacity }}
         >
-          <h3 className="text-white border border-white rounded-full p-10 hover:bg-indigo-300 hover:text-black cursor-pointer">
+          <h3
+            onClick={() =>
+              window.scrollTo({
+                top: window.innerHeight * 3,
+                behavior: "smooth",
+              })
+            }
+            className="text-white border border-white rounded-full p-10 hover:bg-indigo-300 hover:text-black cursor-pointer"
+          >
             Scroll Down
           </h3>
         </motion.div>

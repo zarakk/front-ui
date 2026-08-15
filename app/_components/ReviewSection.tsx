@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion, useAnimation, useMotionValue } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 interface ReviewCardProps {
@@ -55,36 +55,7 @@ const BrandLogo = ({ src, alt }: BrandLogoProps) => (
   />
 );
 
-const HorizontalStrip = ({
-  children,
-  title,
-  bgColor,
-}: HorizontalStripProps) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
-  const x = useMotionValue(0);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const scrollWidth = containerRef.current.scrollWidth;
-      const containerWidth = containerRef.current.offsetWidth;
-      const distance = scrollWidth - containerWidth;
-
-      controls.start({
-        x: [-distance, 0],
-        transition: {
-          x: {
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 50,
-            ease: "linear",
-          },
-        },
-      });
-    }
-  }, [controls]);
-
+const HorizontalStrip = ({ children, title }: HorizontalStripProps) => {
   return (
     <div
       style={{
@@ -92,24 +63,16 @@ const HorizontalStrip = ({
           "linear-gradient(180deg,rgba(255,255,255,0) 55.94%,#ffffff 100%),radial-gradient(50% 65.18% at 100% 100%,#ffecb3 0%,rgba(255,235,219,0) 100%),radial-gradient(63.5% 72.5% at 0% 100%,#b2edbf 0%,rgba(224,254,231,0) 100%),radial-gradient(144.02% 172.29% at 50% -94.61%,#ffbfda 0%,rgba(255,222,235,0) 100%),#ffffff",
       }}
       className="py-16 px-4"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12 text-[#0b1a37]">
         {title}
       </h2>
-      <div className="overflow-hidden" ref={containerRef}>
-        <motion.div
-          className="flex"
-          animate={controls}
-          style={{ x }}
-          drag="x"
-          dragConstraints={containerRef}
-          whileTap={{ cursor: "grabbing" }}
-        >
+      <div className="overflow-hidden">
+        {/* Content is duplicated so the -50% CSS marquee loops seamlessly. */}
+        <div className="flex w-max animate-marquee">
           {children}
           {children}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
